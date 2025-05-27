@@ -115,8 +115,8 @@
       if (speed < 0.002) {
         spinning = false;
         // Determine selected item
-        const degrees = (angleOffset * 180 / Math.PI) % 360;
-        const index = total - Math.floor(((degrees + 360) % 360) / (360 / total)) % total;
+        const adjustedAngle = (1.5 * Math.PI - angleOffset + 2 * Math.PI) % (2 * Math.PI);
+        const index = Math.floor(adjustedAngle / sliceAngle) % total;
         document.getElementById('result').textContent = `Selected: ${items[index]}`;
         return;
       }
